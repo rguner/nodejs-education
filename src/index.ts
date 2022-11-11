@@ -11,6 +11,7 @@ import { IUserSchema, UserModel } from "./models/UserModel";
 import { fncCall, fncCallSync } from './utils/action';
 import { createData, readData } from './utils/fileUsing';
 import { fncCallWithThen } from './utils/actionPromise';
+import { logger } from './utils/useWinston';
 
 //fncCallSync()
 //fncCall()
@@ -66,9 +67,20 @@ app.use(bodyParser.json())
 
 
 // global filter
-// global filter
 app.use( async ( req, res, next ) => {
-    const url = req.url    
+    const url = req.url
+    const ip= req.ip
+    // logger
+    logger.info('url: ' + url + ' iP:' + ip)
+    try {
+        const obj:any = {}
+        obj.sum(10,50) 
+    } catch (error:any) {
+        logger.log({
+            level: 'error',
+            message: error.message,
+        }) 
+    }  
     // admin Control
     if ( url.includes('/api') || url === '/admin' || url === '/admin/login' ) {
         next()

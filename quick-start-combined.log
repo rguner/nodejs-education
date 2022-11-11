@@ -1,0 +1,6 @@
+{"level":"info","message":"url: /admin/ iP:::1","service":"your-service-name","timestamp":"2022-11-11 16:03:04"}
+{"level":"error","message":"obj.sum is not a function","service":"your-service-name","timestamp":"2022-11-11 16:03:04"}
+{"level":"info","message":"url: /admin/login iP:::1","service":"your-service-name","timestamp":"2022-11-11 16:03:06"}
+{"level":"error","message":"obj.sum is not a function","service":"your-service-name","timestamp":"2022-11-11 16:03:06"}
+{"level":"info","message":"url: /admin/dashboard iP:::1","service":"your-service-name","timestamp":"2022-11-11 16:03:06"}
+{"level":"error","message":"obj.sum is not a function","service":"your-service-name","timestamp":"2022-11-11 16:03:06"}
