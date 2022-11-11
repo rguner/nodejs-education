@@ -1,6 +1,7 @@
 import express, { response } from "express";
 import { IUserLogin } from "../../models/IUserLogin";
 import { userLoginControl } from "../../services/admin/userService";
+import { eventEmitter, eventEnum } from "../../utils/events";
 import { encrypt } from "../../utils/util";
 
 export const loginController = express.Router();
@@ -15,17 +16,6 @@ loginController.get('/', (req, res) => {
 
 // post login
 loginController.post('/login', (req, res) => {
-    /*
-    console.log(JSON.stringify(req.body))
-    const email= req.body.email
-    const password = req.body.password
-    //console.log(email)
-    if (email==='rguner@gmail.com' && password==='12345') {
-        console.log('Login Success');
-    } else {
-        console.log('Login Failed')
-    }
-    */
    try {
     const user: IUserLogin = req.body; 
     if (user.email===undefined || user.password===undefined || user.email==='' || user.password==='') {
@@ -45,6 +35,7 @@ loginController.post('/login', (req, res) => {
             if ( user.remember && user.remember==='on') {
                res.cookie('admin', encrypt(userItem.id), {maxAge: 1000*60*60*24, secure: true})
             }
+            eventEmitter.emit(eventEnum.fncOne, userItem.name!)
             res.redirect('../admin/dashboard')       
         } else {
             errorMessage = "Username or password failed"
